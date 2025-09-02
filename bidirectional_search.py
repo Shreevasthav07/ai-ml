@@ -23,7 +23,8 @@ def bidirectional_search(initial,goal,graph):
                     
                     
                     if neighbor in visited_from_goal:
-                        return build_path(visited_from_initial, visited_from_goal, neighbor)
+                        forward_path, backward_path = build_path(visited_from_initial, visited_from_goal, neighbor)
+                        return forward_path, backward_path
         
        
         if queue_from_goal:
@@ -49,22 +50,24 @@ def build_path(forward_visited, backward_visited, meeting_point):
     
     
     path2 = []
-    node = backward_visited[meeting_point]
+    node = meeting_point
     while node is not None:
         path2.append(node)
         node = backward_visited[node]
     
-    return path1 + path2
+    return path1, path2
 
 
 
-# graph2 = {
-#     'A': ['B', 'C'],
-#     'B': ['A', 'D', 'E'],
-#     'C': ['A', 'F'],
-#     'D': ['B'],
-#     'E': ['B', 'F'],
-#     'F': ['C', 'E']
-# }
-answer=bidirectional_search('A', 'E',graph)
-print(answer)
+graph2 = {
+    'A': ['B', 'C'],
+    'B': ['A', 'D', 'E'],
+    'C': ['A', 'F'],
+    'D': ['B'],
+    'E': ['B', 'F'],
+    'F': ['C', 'E']
+}
+result = bidirectional_search('A', 'E', graph2)
+print("Forward Path:", result[0])
+print("Backward Path:", result[1])
+print("Full Path:", result[0] + result[1][1:])
