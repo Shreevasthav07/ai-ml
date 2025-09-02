@@ -67,7 +67,7 @@ graph2 = {
     'E': ['B', 'F'],
     'F': ['C', 'E']
 }
-result = bidirectional_search('A', 'E', graph2)
+result = bidirectional_search('Sibiu', 'Bucharest', graph)
 print("Forward Path:", result[0])
-print("Backward Path:", result[1])
+print("Backward Path:",result[1][::-1])
 print("Full Path:", result[0] + result[1][1:])
