@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 
 data = pd.read_csv('studytime_scores.csv')
 
+# dataset contains num of hours students studied for an exam (<9000 hrs i.e < 1 year)
+# and their score (<300)
+
 
 data['StudyTime_Hours_Norm'] = data['StudyTime_Hours'] / data['StudyTime_Hours'].max()
 
