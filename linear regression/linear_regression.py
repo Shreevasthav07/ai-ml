@@ -40,7 +40,7 @@ L = 0.01
 epochs = 2000
 
 
-for i in range(epochs):
+for i in range(epochs+1):
     m, b = gradient_descent(m, b, data, L)
     if i % 200 == 0:
         print(f"Epoch {i}: m={m:.6f}, b={b:.3f}, loss={loss_function(m,b,data):.3f}")
