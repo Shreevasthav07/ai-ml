@@ -39,20 +39,37 @@ b = 0
 L = 0.01 
 epochs = 2000
 
+loss_history = []
 
 for i in range(epochs+1):
     m, b = gradient_descent(m, b, data, L)
+    current_loss = loss_function(m, b, data)
+    loss_history.append(current_loss)
     if i % 200 == 0:
         print(f"Epoch {i}: m={m:.6f}, b={b:.3f}, loss={loss_function(m,b,data):.3f}")
 
 print(f"\nFinal model: y = {m:.6f}x + {b:.3f}")
 
 
+
+plt.figure(figsize=(12,5))
+
+
+plt.subplot(1, 2, 1)
 plt.scatter(data.StudyTime_Hours_Norm, data.ExamScore, color="black", label="Data points")
 x_range = np.linspace(data.StudyTime_Hours_Norm.min(), data.StudyTime_Hours_Norm.max(), 100)
 plt.plot(x_range, m*x_range + b, color="red", label="Regression line")
 plt.xlabel("Normalized Study Time")
 plt.ylabel("Exam Score")
-plt.title("Linear Regression (Normalized StudyTime_Hours)")
+plt.title("Linear Regression Fit")
 plt.legend()
+
+
+plt.subplot(1, 2, 2)
+plt.plot(range(epochs+1), loss_history, color='blue')
+plt.xlabel("Epochs")
+plt.ylabel("Loss (MSE)")
+plt.title("Loss vs Epochs")
+
+plt.tight_layout()
 plt.show()
