@@ -36,6 +36,11 @@ eigenvector_subset = eigen_vectors[:, :n_components]
 # Step 7: Transform data
 X_reduced = np.dot(X_meaned, eigenvector_subset)
 
+print("Original shape:", X.shape)
+print("Reduced shape:", X_reduced.shape)
+print("Eigenvalues:", np.round(eigen_values, 3))
+print("Explained variance (%):", np.round(eigen_values / np.sum(eigen_values) * 100, 2))
+
 # Step 8: Visualization
 plt.figure(figsize=(7,5))
 plt.scatter(X_reduced[:, 0], X_reduced[:, 1], color='blue', edgecolor='k')
@@ -44,3 +49,4 @@ plt.xlabel("Principal Component 1")
 plt.ylabel("Principal Component 2")
 plt.grid(True)
 plt.show()
+
